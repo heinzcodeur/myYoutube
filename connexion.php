@@ -6,8 +6,8 @@ require_once 'menu.php';
 
 <div class="container mt-4" style="width:50%">
 
-<form>
-<fieldset class="border p-2">
+<form method="post" action="login.php">
+<fieldset class="border p-4">
 <legend class="w-auto">
 <h2>Connexion</h2>
 </legend>
