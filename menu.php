@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +31,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+        <?php if(isset($_SESSION['nickname'])):?>
       <li class="nav-item active">
+        <a class="nav-link" href="connexion.php"><?=$_SESSION['nickname']?> <span class="sr-only">(current)</span></a>
+      </li>
+        <?php else :?>
+        <li class="nav-item active">
         <a class="nav-link" href="connexion.php">connexion <span class="sr-only">(current)</span></a>
       </li>
+        <?php endif;?>
       <!--li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
