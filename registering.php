@@ -12,7 +12,8 @@ $mail=isset($_POST['mail'])?$_POST['mail']:"";
 $mdp=isset($_POST['mot2passe'])?$_POST['mot2passe']:"";
 $nickname=isset($_POST['nickname'])?$_POST['nickname']:"";
 
-$req="INSERT INTO test(nickname,email,mdp) VALUES('$nickname','$mail','$mdp')";
+$req="INSERT INTO users(nickname,email,mdp) VALUES('$nickname','$mail','$mdp')";
+
 
 $res=mysqli_query($con,$req);
 

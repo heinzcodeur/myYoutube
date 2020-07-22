@@ -1,32 +1,31 @@
 <?php
-
 require_once 'db_connect.php';
 
 if(!isset($_POST['connexion'])){
     header('Location:index.php');
 }
 
-die('cc');
+//die('cc');
 $mail=isset($_POST['mail'])?$_POST['mail']:"";
 $mdp=isset($_POST['mot2passe'])?$_POST['mot2passe']:"";
-$age=isset($_POST['age'])?$_POST['age']:"";
-//echo '<pre>';print_r($_POST);echo '<pre>';//die();
+//$age=isset($_POST['age'])?$_POST['age']:"";
 
-
-$req="INSERT INTO test(mail,mdp,age) VALUES('$mail', '$mdp', $age)";
-
-//die($req);
-
-$req2="SELECT * FROM test";
-
+$req="SELECT * FROM users WHERE email='$mail' and mdp='$mdp'";
 $res=mysqli_query($con,$req);
-$res2=mysqli_query($con,$req2);
 
-//print_r($res2);die();
+if(mysqli_num_rows($res)==1){
+    while ($a=mysqli_fetch_assoc($res)){
+            $nickname2=$a['nickname'];
+            $mail2=$a['email'];
+    }
 
-while ($a=mysqli_fetch_assoc($res2)){
- echo '<pre>';print_r( $a);echo '<pre>';
+
+    session_start();
+    $_SESSION['nickname']=$nickname2;
+
+    header('Location:index.php');
+    exit();
 }
-die();
-header('Location:index.php');
+//die();
+header('Location:connexion.php');
 exit();

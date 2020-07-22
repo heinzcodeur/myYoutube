@@ -1,5 +1,6 @@
 <?php
 session_start();
+print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@ session_start();
     <ul class="navbar-nav mr-auto">
         <?php if(isset($_SESSION['nickname'])):?>
       <li class="nav-item active">
-        <a class="nav-link" href="connexion.php"><?=$_SESSION['nickname']?> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="logout.php"><?=$_SESSION['nickname']?> <span class="sr-only">(current)</span></a>
       </li>
         <?php else :?>
         <li class="nav-item active">
