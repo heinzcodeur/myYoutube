@@ -9,7 +9,9 @@ print_r($_SESSION);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myYoutube</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-
+    <style>
+        li{list-style-type: none;}
+    </style>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -24,7 +26,7 @@ print_r($_SESSION);
 <body>
 
 <div class="container">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark navbar-fixed-top">
   <a class="navbar-brand" href="index.php">myYoutube</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -33,9 +35,18 @@ print_r($_SESSION);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <?php if(isset($_SESSION['nickname'])):?>
-      <li class="nav-item active">
-        <a class="nav-link" href="logout.php"><?=$_SESSION['nickname']?> <span class="sr-only">(current)</span></a>
-      </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="logout.php" onclick="return(confirm('vous nous quittez?'));"><?= $_SESSION['nickname'] ?> <span
+                            class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="videos_add.php">ajouter <span
+                            class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.php">monCompte <span
+                            class="sr-only">(current)</span></a>
+            </li>
         <?php else :?>
         <li class="nav-item active">
         <a class="nav-link" href="connexion.php">connexion <span class="sr-only">(current)</span></a>
