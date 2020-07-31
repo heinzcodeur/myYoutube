@@ -1,6 +1,7 @@
 <?php
 session_start();
-print_r($_SESSION);
+require_once 'db_connect.php';
+//print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +26,8 @@ print_r($_SESSION);
 
 <body>
 
-<div class="container">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark navbar-fixed-top">
+<div class="container" style="margin-bottom: 80px">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark fixed-top">
   <a class="navbar-brand" href="index.php">myYoutube</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

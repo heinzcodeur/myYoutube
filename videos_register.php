@@ -9,8 +9,8 @@ $titre=isset($_POST['title'])?$_POST['title']:"";
 
 /*echo strlen(trim($url)).'<br>';
 echo strlen($url).'<br>';*/
-$url2=trim($url);
-$titre2=($titre);
+$url2=trim(str_replace("'","\'",$url));
+$titre2=str_replace("'","\'",$titre);
 //echo htmlentities($url);
 $user=$_SESSION['user_id'];
 
