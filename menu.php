@@ -12,6 +12,30 @@ require_once 'db_connect.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         li{list-style-type: none;}
+
+        #row2 li {
+            display: inline;
+            list-style: none; /* pour enlever les puces sur IE7 */
+            margin: 10px;
+        }
+
+        .myback{
+            background-color: #020235;
+        }
+
+
+        .color{
+            color: white
+        }
+
+        a{
+            color:white
+        }
+
+        .mybtn{
+            background-color: yellowgreen
+        }
+
     </style>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,7 +48,7 @@ require_once 'db_connect.php';
 
 </head>
 
-<body>
+<body class="myback color a">
 
 <div class="container" style="margin-bottom: 80px">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary navbar-dark fixed-top">
@@ -71,8 +95,8 @@ require_once 'db_connect.php';
         <a class="nav-link disabled" href="#">Disabled</a>
       </li-->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="entrée" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="entrée" aria-label="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">rechercher</button>
     </form>
   </div>
