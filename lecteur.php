@@ -49,7 +49,7 @@ mysqli_query($con,$historeq);
                 </form>
                 <br>
             <?php else:?>
-            <h6><i>connectez-vous pour ajouter un commentaire!</i></h6>
+            <h6><a href="connexion.php"><i>connectez-vous pour ajouter un commentaire!</i></a></h6>
             <?php endif;?>
             <ul>
             <?php

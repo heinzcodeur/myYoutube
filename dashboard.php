@@ -20,7 +20,7 @@ $user=mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM users where user_id='$
 
                     <?php
                 if ($id):
-                        $req = "SELECT * FROM videos where author='$id'";
+                        $req = "SELECT * FROM videos where author='$id' ORDER BY date_ajout DESC";
                         $res = mysqli_query($con, $req);
                     while ($a = mysqli_fetch_assoc($res)):
                             $video_id=$a['video_id']
@@ -28,8 +28,8 @@ $user=mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM users where user_id='$
                     <tr>
                         <td><a href="lecteur.php?id=<?=$video_id?>"> <?=ucfirst(substr($a['titre'],0,60)) ?></a></td>
                         <td><li><a href="lecteur.php?id=<?=$video_id?>"> <?=ucfirst(substr($a['titre'],0,60)) ?></a></td>
-                            <td><a href="video_manager.php" class="btn mybtn">modifier</a></td>
-                            <td><a href="video_manager.php" class="btn mybtn">supprimer</a></li></td>
+                            <td><a href="video_manager.php?id=<?=$video_id?>" class="btn mybtn">modifier</a></td>
+                            <td><a href="video_manager.php?id=<?=$video_id?>" class="btn mybtn">supprimer</a></li></td>
                     </tr>
                         <!--hr class="bg-primary"-->
                     <?php
@@ -42,11 +42,11 @@ $user=mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM users where user_id='$
 
         </div>
 
-        <div class="col-md-12 col-sm-12 col-" style="border: 1px solid;width:500px;border-radius: 5px" id="second">
+        <div class="col-md-12 col-sm-12 col- mt-2" style="border: 1px solid;width:500px;border-radius: 5px" id="second">
             <h3>mon historique</h3>
             <div style="display:none;;">
                 <?php
-                $historeq = "SELECT * FROM historique h WHERE h.user_id='$id'";
+                $historeq = "SELECT * FROM historique h WHERE h.user_id='$id' ORDER BY date_vision DESC";
                 $histores = mysqli_query($con, $historeq);
                 ?>
                 <ul>
@@ -66,10 +66,11 @@ $user=mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM users where user_id='$
             </div>
         </div>
 
-        <div class="col-md-12 col-sm-12 col-" style="border: 1px solid;width:500px;border-radius: 5px" id="third">
+        <div class="col-md-12 col-sm-12 col- mt-2" style="border: 1px solid;width:500px;border-radius: 5px" id="third">
             <h3>mes informations</h3>
 
-            <table class="table table-striped color">
+            <table class="table table-striped color"             style="display:none">
+
                 <tbody>
 
                     <tr>
@@ -132,6 +133,13 @@ $user=mysqli_fetch_assoc(mysqli_query($con,"SELECT * FROM users where user_id='$
             $("#second>div").show();
         }*/
 
+    })
+
+    $("#third").click(function () {
+        if ($("#second>div").css('display') == "none") {
+            $("#third>table").show();
+            $("#first>div").hide();
+        }
     })
 
 

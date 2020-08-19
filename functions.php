@@ -24,3 +24,35 @@ function user_search($id){
     //$titre = $resfinal['titre'];
     return $user;
 }
+
+function displayVideos($s, $start){
+    global $con;
+    $req=null;
+    if($s){
+        $req="SELECT * FROM videos WHERE titre LIKE '%$s%'";
+    }else{
+        $req="SELECT * FROM videos LIMIT $start, 6";
+        //die($req);
+    }
+
+    $videos=mysqli_query($con,$req);
+    return $videos;
+}
+
+function afficheVideos($videos)
+{
+
+    while ($v = mysqli_fetch_assoc($videos)) {
+        miniaturevideo($v);
+    }
+
+}
+
+function miniaturevideo(array $v){
+    echo '<div class="col-md-4 mt-3">' .
+        url_format($v["url"]) . '
+                <div style="margin-top: -9px">
+                   <a href="lecteur.php?id=' . $v["video_id"] . '">' . substr($v["titre"], 0, 40) . '...</a>
+                </div>
+            </div> ';
+}
