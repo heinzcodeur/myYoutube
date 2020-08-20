@@ -49,7 +49,7 @@ function mySelect($table, $where=null,$field=null,  $val=null ){
 function videos($nbpages,$start,$s){
     global $con;
     $start*=6;
-    $req=isset($s)?mySelect('videos','titre','WHERE')."LIKE '%$s%' LIMIT $start,6":mySelect('videos')."LIMIT $start,6";
+    $req=isset($s)?mySelect('videos','titre','WHERE')." titre LIKE '%$s%' LIMIT $start,6":mySelect('videos')."LIMIT $start,6";
     //die($req);
     $vid= mysqli_query($con,$req);
     afficheVideos($vid);
