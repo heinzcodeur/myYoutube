@@ -6,7 +6,7 @@ function url_format($url){
 
 function videos_search($vid){
     global $con;
-    $videoreq = "SELECT * FROM videos WHERE video_id='$vid'";
+    $videoreq = mySelect('videos')."WHERE video_id='$vid'";
     $videores = mysqli_query($con, $videoreq);
     $resfinal = mysqli_fetch_assoc($videores);
     $url = $resfinal['url'];
@@ -16,7 +16,7 @@ function videos_search($vid){
 
 function user_search($id){
     global $con;
-    $userreq = "SELECT * FROM users WHERE user_id='$id'";
+    $userreq = mySelect('users')."WHERE user_id='$id'";
     $userres = mysqli_query($con, $userreq);
     $resfinal = mysqli_fetch_assoc($userres);
     //print_r($resfinal);die();
@@ -25,18 +25,34 @@ function user_search($id){
     return $user;
 }
 
-function displayVideos($s, $start){
+function getnbpages($s=null){
     global $con;
     $req=null;
-    if($s){
+    /*if($s){
         $req="SELECT * FROM videos WHERE titre LIKE '%$s%'";
     }else{
         $req="SELECT * FROM videos LIMIT $start, 6";
         //die($req);
-    }
+    }*/
+    $req=isset($s)?mySelect('videos','titre','WHERE')."LIKE '%$s%'":mySelect('videos');
+    //die($req);
+    $nbpages=mysqli_query($con,$req);
+    return mysqli_num_rows($nbpages);
+}
 
-    $videos=mysqli_query($con,$req);
-    return $videos;
+function mySelect($table, $where=null,$field=null,  $val=null ){
+
+    return 'SELECT * FROM '.$table.' '.$where.' '.$field.' ';
+
+}
+
+function videos($nbpages,$start,$s){
+    global $con;
+    $start*=6;
+    $req=isset($s)?mySelect('videos','titre','WHERE')."LIKE '%$s%' LIMIT $start,6":mySelect('videos')."LIMIT $start,6";
+    //die($req);
+    $vid= mysqli_query($con,$req);
+    afficheVideos($vid);
 }
 
 function afficheVideos($videos)
@@ -56,3 +72,9 @@ function miniaturevideo(array $v){
                 </div>
             </div> ';
 }
+
+function paginer($nbpages){
+    for ($i = 0; $i < $nbpages; $i++) {
+        $url="<a href='index.php?start=$i'>".$i.'</a>';
+        echo '<li>'.$url.'</li>';
+}}
