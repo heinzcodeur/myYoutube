@@ -6,7 +6,7 @@ require_once 'functions.php';
 $s=$_POST['search'];
 $start=isset($_GET['start'])?$_GET['start']:0;
 $nb_pages=ceil(getnbpages($s)/6);
-
+//die($nb_pages) ;
 ?>
 
 

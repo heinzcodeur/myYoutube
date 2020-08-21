@@ -9,6 +9,7 @@ $titre=isset($_POST['title'])?$_POST['title']:"";
 
 /*echo strlen(trim($url)).'<br>';
 echo strlen($url).'<br>';*/
+
 $url2=trim(str_replace("'","\'",$url));
 $titre2=str_replace("'","\'",$titre);
 //echo htmlentities($url);
@@ -19,3 +20,4 @@ $req="INSERT INTO videos(url,titre,date_ajout,author) VALUES ('$url2','$titre2',
 $res=mysqli_query($con,$req);
 
 header('Location:index.php');
+exit();

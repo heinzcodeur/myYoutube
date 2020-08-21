@@ -2,6 +2,7 @@
 require_once 'menu.php';
 require_once 'functions.php';
 $user_id=$_SESSION['user_id'];
+$mess=isset($_GET['mess']) && $_GET['mess']==2?"Only Admin Users may delete comments!":null;
 
 $req="SELECT * FROM videos LIMIT 0,6";
 $res=mysqli_query($con,$req);
@@ -10,13 +11,15 @@ $url=isset($_GET['url'])?$_GET['url']:"";
 $id=isset($_GET['id'])?$_GET['id']:"";
 $titre=isset($_GET['titre'])?$_GET['titre']:"";
 
-$req2="SELECT * FROM videos where video_id='$id'";
+//$req2="SELECT * FROM videos where video_id='$id'";
+$req2=mySelect('videos','video_id','=',$id);
 //die($req2);
 $res2=mysqli_fetch_assoc(mysqli_query($con,$req2));
 //print_r($res2);die();
 if(!$res2){header('Location:index.php');}
 
 $histocheck="SELECT * FROM historique WHERE video_id='$id' AND user_id='$user_id'";
+//$histocheck=mySelect('historique','video_id','=',$user_id,'','');
 //die($histocheck);
 $histocheckres=mysqli_query($con,$histocheck);
 if(mysqli_num_rows($histocheckres)<1){
@@ -30,10 +33,13 @@ mysqli_query($con,$historeq);
 <div class="container">
     <div class="row">
         <div class="col-md-9">
+            <?php if($mess):?>
+        <div class="alert alert-danger"><?=$mess?></div>
+            <?php endif;?>
             <?=str_replace(['560','315'],['770','515'],$res2['url'])?>
             <h5><?=$res2['titre'] ?></h5>
             <br>
-            <p>vidéo ajoutée le <?=$res2['date_ajout']?></p>
+            <p>vidéo ajoutée le <?=$res2['date_ajout']?>&nbsp;par <i><?=getAuthor($res2['author'])?></i></p>
             <br>
             <h3>Commentaires</h3>
             <?php if($_SESSION['user_id']): ?>
@@ -53,13 +59,18 @@ mysqli_query($con,$historeq);
             <?php endif;?>
             <ul>
             <?php
-            $com="SELECT * FROM comments WHERE video_id='$id'";
-            //die($com);
+            $com=mySelect('comments','video_id','=',$id);
             $comres=mysqli_query($con,$com);
-            //print_r(mysqli_fetch_assoc($comres));die();
             while($comm=mysqli_fetch_assoc($comres)):
             ?>
-                <li><b><?= ucfirst(user_search($comm['user_id'])) ?>&nbsp;&nbsp;</b><?= ucfirst($comm['comment']) ?></li>
+                <li>
+                    <b><?= ucfirst(user_search($comm['user_id'])) ?>&nbsp;&nbsp;</b><?= ucfirst($comm['comment']) ?>
+                    &nbsp;
+                    <a href="comment.php?task=delete&comm_id=<?=$comm['comment_id']?>&video_id=<?=$id?>">
+                        <!--button class="btn mybtn">supprimer</button-->
+                        <img src="criss-cross.png" width="28" height="29" alt="DEL" >
+                    </a>
+                </li>
             <?php endwhile;?>
             </ul>
         </div>

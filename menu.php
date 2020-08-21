@@ -97,7 +97,7 @@ require_once 'db_connect.php';
     </ul>
     <form class="form-inline my-2 my-lg-0" action="" method="post">
       <input class="form-control mr-sm-2" type="search" placeholder="entrée" aria-label="Search" name="search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">rechercher</button>
+      <button class="btn color my-2 my-sm-0" style="border: 1px solid" type="submit">rechercher</button>
     </form>
   </div>
 </nav>

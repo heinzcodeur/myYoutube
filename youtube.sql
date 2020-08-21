@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le :  lun. 10 août 2020 à 12:38
+-- Généré le :  jeu. 20 août 2020 à 22:29
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -39,7 +39,9 @@ INSERT INTO `comments` (`comment_id`, `comment`, `user_id`, `video_id`) VALUES
 (5, 'que de bons souvenirs', 6, 15),
 (6, 'belle gourmette', 6, 8),
 (7, 'paparazzi', 6, 2),
-(8, 'affaire de politik la', 6, 7);
+(8, 'affaire de politik la', 6, 7),
+(9, 'come back de Lord Mc Solaar avec des effets spéciaux', 1, 17),
+(10, 'la grande classe à Monaco', 6, 6);
 
 -- --------------------------------------------------------
 
@@ -76,7 +78,13 @@ INSERT INTO `historique` (`video_id`, `user_id`, `date_vision`) VALUES
 (8, 6, '2020-08-08 10:55:18'),
 (2, 6, '2020-08-08 10:56:05'),
 (7, 6, '2020-08-08 10:58:04'),
-(16, 6, '2020-08-08 21:35:20');
+(16, 6, '2020-08-08 21:35:20'),
+(17, 1, '2020-08-11 17:02:32'),
+(19, 4, '2020-08-11 22:24:54'),
+(16, 1, '2020-08-17 17:22:27'),
+(6, 6, '2020-08-19 11:58:55'),
+(20, 1, '2020-08-20 22:19:28'),
+(18, 1, '2020-08-20 22:33:33');
 
 -- --------------------------------------------------------
 
@@ -138,7 +146,12 @@ INSERT INTO `videos` (`video_id`, `url`, `titre`, `date_ajout`, `author`) VALUES
 (13, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/EX8sjbsJj-I\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '50 Cent - Do You Think About Me (Official Video)', '2020-08-07 23:59:12', 7),
 (14, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/juoggmbU1qw\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '50 Cent - Hustler\'s Ambition (Official Music Video)', '2020-08-08 00:12:26', 7),
 (15, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/MlzrC-B6n-M\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'The Game - Wouldn\'t Get Far ft. Kanye West (Official Music Video)', '2020-08-08 10:44:43', 6),
-(16, '', '', '2020-08-08 11:57:10', 6);
+(16, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/omfz62qu_Bc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '2Pac ft. Dr. Dre - California Love (Official Video) [Full Length Version]', '2020-08-08 11:57:10', 6),
+(17, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/VK5EAkdUyhk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'Mc Solaar - Solaar pleure (Clip Officiel)', '2020-08-11 17:01:25', 1),
+(18, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/SbYz6BUIDvE\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '50 Cent - Definition Of Sexy (Official Music Video) ', '2020-08-11 22:22:52', 4),
+(19, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/TulMjeExtgk\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '50 Cent - Amusement Park', '2020-08-11 22:24:38', 4),
+(20, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/3-M-S73yitU\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'MC Solaar : l\'interview qui pique ton cœur', '2020-08-20 02:19:45', 6),
+(21, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/4u7_SqYiCxA\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 'PDCI-RDA : Flash du 19/08/2020. Le ministre ANAKY Kobenan reçu par le président Bédié', '2020-08-20 21:47:26', 1);
 
 --
 -- Index pour les tables déchargées
@@ -170,7 +183,7 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `users`
@@ -182,4 +195,4 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `video_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;

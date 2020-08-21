@@ -4,22 +4,26 @@ function url_format($url){
     return str_replace(['560','315'],['340','264'],$url);
 }
 
+function formatUrl($url){
+
+    return trim(str_replace("'","\'",$url));
+}
+
 function videos_search($vid){
     global $con;
-    $videoreq = mySelect('videos')."WHERE video_id='$vid'";
+    $videoreq = mySelect('videos','video_id','=',$vid);
     $videores = mysqli_query($con, $videoreq);
     $resfinal = mysqli_fetch_assoc($videores);
     $url = $resfinal['url'];
-    //$titre = $resfinal['titre'];
     return $resfinal;
 }
 
 function user_search($id){
     global $con;
-    $userreq = mySelect('users')."WHERE user_id='$id'";
+    $userreq = mySelect('users','user_id', '=',$id);//die($userreq);
     $userres = mysqli_query($con, $userreq);
     $resfinal = mysqli_fetch_assoc($userres);
-    //print_r($resfinal);die();
+    //print_r($resfinal);die('ti');
     $user = $resfinal['nickname'];
     //$titre = $resfinal['titre'];
     return $user;
@@ -34,22 +38,27 @@ function getnbpages($s=null){
         $req="SELECT * FROM videos LIMIT $start, 6";
         //die($req);
     }*/
-    $req=isset($s)?mySelect('videos','titre','WHERE')."LIKE '%$s%'":mySelect('videos');
+    $req=isset($s)?mySelect('videos','titre','LIKE', $s):"SELECT * FROM videos";
     //die($req);
     $nbpages=mysqli_query($con,$req);
     return mysqli_num_rows($nbpages);
 }
 
-function mySelect($table, $where=null,$field=null,  $val=null ){
+function mySelect($table,$field=null, $ope=null, $val=null, $orderby=null,$field2=null,$sens=null ){
+    //$val=isset($val)?"'".$val."'":null;
+    if(isset($val) && $ope=="LIKE"){
+        //die($val);
+        $val="'%".$val."%'";
+    }
 
-    return 'SELECT * FROM '.$table.' '.$where.' '.$field.' ';
+    return "SELECT * FROM $table WHERE $field $ope $val $orderby $field2 $sens";
 
 }
 
 function videos($nbpages,$start,$s){
     global $con;
     $start*=6;
-    $req=isset($s)?mySelect('videos','titre','WHERE')." titre LIKE '%$s%' LIMIT $start,6":mySelect('videos')."LIMIT $start,6";
+    $req=isset($s)?mySelect('videos','titre','LIKE',$s,'ORDER BY','titre')." LIMIT $start,6":"SELECT * FROM videos ORDER BY date_ajout DESC LIMIT $start,6";
     //die($req);
     $vid= mysqli_query($con,$req);
     afficheVideos($vid);
@@ -74,7 +83,28 @@ function miniaturevideo(array $v){
 }
 
 function paginer($nbpages){
+    //die($nbpages);
     for ($i = 0; $i < $nbpages; $i++) {
         $url="<a href='index.php?start=$i'>".$i.'</a>';
         echo '<li>'.$url.'</li>';
 }}
+
+/**
+ * @param $id
+ */
+function getAuthor($id){
+    global $con;
+
+    $r=mysqli_fetch_assoc(mysqli_query($con, mySelect('users','user_id','=',$id)));
+
+    return $r['nickname'];
+}
+
+
+function isAdmin($user){
+    global $con;
+    $r=mySelect('users','user_id','=',$user);
+    $res=mysqli_fetch_assoc(mysqli_query($con,$r));
+    if($res['is_admin']){return true;}
+    return false;
+}
