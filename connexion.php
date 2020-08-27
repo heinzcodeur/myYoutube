@@ -20,6 +20,8 @@ require_once 'menu.php';
             <div class="form-group">
                 <label for="mot2passe">mot2passe</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="mot2passe">
+                <input type="hidden" name="page" value="<?=$_GET['page']?>">
+                <input type="hidden" name="id" value="<?=$_GET['id']?>">
             </div>
             <input type="hidden" name="connexion">
 
@@ -29,7 +31,9 @@ require_once 'menu.php';
     </form>
 
     <br>
-    <a href="register.php"><i>Pas encore inscrit? Cliquez pour vour vous inscrire!</i></a>
+    <a href="register.php?page=lecteur&id=<?= $_GET['id'] ?>">
+        <i>Pas encore inscrit? Cliquez pour vour vous inscrire!</i>
+    </a>
 
 
 </div>

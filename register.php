@@ -6,6 +6,11 @@ require_once 'menu.php';
 
 <div class="container mt-4" style="width:50%">
 
+    <?php
+    if($_GET['error']==1):
+    ?>
+    <div class="alert alert-danger">tous les champs doivent être remplis!</div>
+    <?php endif;?>
     <form method="post" action="registering.php">
         <fieldset class="border p-4">
             <legend class="w-auto">

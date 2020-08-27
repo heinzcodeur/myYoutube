@@ -30,7 +30,7 @@ if ($_POST) {
     $url = isset($_POST['url']) ? formatUrl($_POST['url']) : '';
     $titre = isset($_POST['titre']) ? $_POST['titre'] : '';
     $url2=trim(str_replace("'","\'",$url));
-    
+
     $req = "UPDATE videos SET url='$url2', titre='$titre' WHERE video_id='$id'";
 //die($req);
     mysqli_query($con, $req);

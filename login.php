@@ -15,6 +15,7 @@ $res=mysqli_query($con,$req);
 
 if(mysqli_num_rows($res)==1){
 
+    $id=$_POST['id'];
     //$a=mysqli_fetch_assoc($res);
     //print_r($a['user_id']);die();
     while ($a=mysqli_fetch_assoc($res)){
@@ -27,6 +28,12 @@ if(mysqli_num_rows($res)==1){
     session_start();
     $_SESSION['nickname']=$nickname2;
     $_SESSION['user_id']=$user_id;
+
+    if($_POST['page']){
+
+    header('Location:lecteur.php?id='.$id);
+    exit();
+    }
 
     header('Location:index.php');
     exit();

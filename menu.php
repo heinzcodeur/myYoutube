@@ -61,7 +61,7 @@ require_once 'db_connect.php';
     <ul class="navbar-nav mr-auto">
         <?php if(isset($_SESSION['nickname'])):?>
             <li class="nav-item active">
-                <a class="nav-link" href="logout.php" onclick="return(confirm('vous nous quittez?'));"><?= $_SESSION['nickname'] ?> <span
+                <a class="nav-link" href="logout.php" onclick="return(confirm('vous nous quittez?'));"><?= ucfirst($_SESSION['nickname']) ?> <span
                             class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
@@ -77,23 +77,7 @@ require_once 'db_connect.php';
         <a class="nav-link" href="connexion.php">connexion <span class="sr-only">(current)</span></a>
       </li>
         <?php endif;?>
-      <!--li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li-->
+
     </ul>
     <form class="form-inline my-2 my-lg-0" action="" method="post">
       <input class="form-control mr-sm-2" type="search" placeholder="entrée" aria-label="Search" name="search">
