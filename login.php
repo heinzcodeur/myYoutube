@@ -1,6 +1,8 @@
 <?php
 require_once 'db_connect.php';
 
+global $con;
+
 if(!isset($_POST['connexion'])){
     header('Location:index.php');
 }
@@ -31,7 +33,7 @@ if(mysqli_num_rows($res)==1){
 
     if($_POST['page']){
 
-    header('Location:lecteur.php?id='.$id);
+    //header('Location:lecteur.php?id='.$id);
     exit();
     }
 

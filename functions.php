@@ -135,7 +135,7 @@ function commentAuthor($user,$comm_id){
  * @return bool|mysqli_result
  */
 function execute($requete){
-    die($requete);
+    //die($requete);
     global $con;
     return mysqli_query($con,$requete);
 
@@ -287,7 +287,7 @@ function existmail($mail){
    // die($mail);
     $res = execute(mySelect('users', 'email', '=', $mail));
     //print_r($res);die('oo');
-    if($res){header('Location:register.php');exit();}
+    //if($res){header('Location:register.php');exit();}
     die('ti');
 
 }

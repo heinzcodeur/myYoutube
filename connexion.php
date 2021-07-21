@@ -1,5 +1,6 @@
 <?php
 require_once 'menu.php';
+$id=isset($_GET['id'] )?$_GET['id'] :'';
 
 ?>
 
@@ -31,7 +32,7 @@ require_once 'menu.php';
     </form>
 
     <br>
-    <a href="register.php?page=lecteur&id=<?= $_GET['id'] ?>">
+    <a href="register.php?page=lecteur&id=<?= $id?>">
         <i>Pas encore inscrit? Cliquez pour vour vous inscrire!</i>
     </a>
 

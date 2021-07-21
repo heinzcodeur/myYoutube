@@ -19,7 +19,8 @@ function formatdatas(array $post){
 
             existmail($v);
         }
-        if(empty($v='')){
+        if($v==''){
+            //die('toto');
             header('Location:register.php?error=1');exit();
         }
         //die('non');
@@ -29,13 +30,13 @@ function formatdatas(array $post){
 }
 
 formatdatas($_POST);
-//die('yy');
+die('yy');
 
 $mail=isset($_POST['mail'])?mysqli_real_escape_string($con,htmlspecialchars($_POST['mail'])):"";
 $mdp=isset($_POST['mot2passe'])?mysqli_real_escape_string($con,htmlspecialchars($_POST['mot2passe'])):"";
 $nickname=isset($_POST['nickname'])?mysqli_real_escape_string($con,htmlspecialchars($_POST['nickname'])):"";
 
-die($nickname);
+//die($nickname);
 $req="INSERT INTO users(nickname,email,mdp) VALUES('$nickname','$mail','$mdp')";
 $id='';
 
