@@ -288,6 +288,6 @@ function existmail($mail){
     $res = execute(mySelect('users', 'email', '=', $mail));
     //print_r($res);die('oo');
     //if($res){header('Location:register.php');exit();}
-    die('ti');
+   // die('ti');
 
 }

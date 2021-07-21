@@ -4,7 +4,7 @@ require_once 'db_connect.php';
 require_once 'functions.php';
 
 //print_r($_POST);die('ryh');
-
+$_POST['register'] = 'b';
 
 if(!isset($_POST['register'])){
     die('o');
@@ -20,6 +20,8 @@ function formatdatas(array $post){
             existmail($v);
         }
         if($v==''){
+           // print_r($post);
+            //die();
             //die('toto');
             header('Location:register.php?error=1');exit();
         }
@@ -30,7 +32,8 @@ function formatdatas(array $post){
 }
 
 formatdatas($_POST);
-die('yy');
+
+//die('yy');
 
 $mail=isset($_POST['mail'])?mysqli_real_escape_string($con,htmlspecialchars($_POST['mail'])):"";
 $mdp=isset($_POST['mot2passe'])?mysqli_real_escape_string($con,htmlspecialchars($_POST['mot2passe'])):"";
@@ -38,9 +41,10 @@ $nickname=isset($_POST['nickname'])?mysqli_real_escape_string($con,htmlspecialch
 
 //die($nickname);
 $req="INSERT INTO users(nickname,email,mdp) VALUES('$nickname','$mail','$mdp')";
+//die($req);
 $id='';
 
-$res=execute();
+$res=execute($req);
 
 $req2="SELECT * FROM users WHERE email='$mail'";
 $req2="SELECT * FROM users WHERE email='$mail'";
