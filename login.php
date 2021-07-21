@@ -31,11 +31,11 @@ if(mysqli_num_rows($res)==1){
     $_SESSION['nickname']=$nickname2;
     $_SESSION['user_id']=$user_id;
 
-    if($_POST['page']){
-
-    //header('Location:lecteur.php?id='.$id);
-    exit();
-    }
+//    if($_POST['page']){
+//
+//    header('Location:lecteur.php?id='.$id);
+//    exit();
+//    }
 
     header('Location:index.php');
     exit();
