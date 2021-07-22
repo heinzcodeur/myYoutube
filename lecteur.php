@@ -2,9 +2,10 @@
 require_once 'menu.php';
 require_once 'functions.php';
 $user_id=isset($_SESSION['user_id'])?$_SESSION['user_id']:'';
+$m=isset($_GET['mess'])?$_GET['mess']:'';
 
 
-$mess=displayMess($_GET['mess']);
+$mess=displayMess($m);
 
 
 $url=isset($_GET['url'])?$_GET['url']:"";
