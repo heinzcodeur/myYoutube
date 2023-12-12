@@ -114,6 +114,23 @@ function isAdmin($user){
     return false;
 }
 
+function addColumn($table, $column, $type, $allowNull = true) {
+    global $con;
+    
+    $nullText = $allowNull ? "DEFAULT NULL" : "NOT NULL";
+    
+    $query = "ALTER TABLE $table ADD COLUMN $column $type $nullText";
+    $result = mysqli_query($con, $query);
+    
+    if ($result) {
+        return "La colonne $column a été ajoutée avec succès à la table $table.";
+    } else {
+        return "Erreur lors de l'ajout de la colonne $column : " . mysqli_error($con);
+    }
+}
+
+
+
 /**
  * @param $user
  * @param $comm_id
@@ -135,7 +152,6 @@ function commentAuthor($user,$comm_id){
  * @return bool|mysqli_result
  */
 function execute($requete){
-    die($requete);
     global $con;
     return mysqli_query($con,$requete);
 
