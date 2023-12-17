@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Si l'URL correspond à la racine du projet
+RewriteRule ^/?$ /myYoutube/public/index.php [L]
+
+# Si l'URL ne correspond à rien
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /myYoutube/notFound.php [L]
